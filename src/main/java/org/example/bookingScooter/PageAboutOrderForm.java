@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageAboutOrderForm {
+public class PageAboutOrderForm {//класс "Про аренду" (второе моадльное окошко при заказе скутера)
     private WebDriver driver;
     private By dateInput = By.cssSelector(".Order_MixedDatePicker__3qiay input[placeholder *= 'Когда']");//локатор для ввода даты в поле дата
     private By termInput = By.xpath(".//div[@class = 'Dropdown-placeholder']");//локатор для поля Срок аренды
@@ -22,6 +22,7 @@ public class PageAboutOrderForm {
     private By yesConfirmationButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Да']");//кнопка Да на окошке с подтверждением заказа
     private By finalOrderWindow = By.xpath("//div[@class='Order_ModalHeader__3FDaJ' and text() = 'Заказ оформлен']");
     private By bookingButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
+    private By orderNumber =By.xpath(".//div[@class='Order_ModalHeader__3FDaJ' and text()='Заказ оформлен']/div[@class='Order_Text__2broi']");
 
     public PageAboutOrderForm (WebDriver driver){
         this.driver = driver;
@@ -66,9 +67,9 @@ public class PageAboutOrderForm {
         ));
     }
 
-    public void getNumberOfOrder (){//текст о подтверждении заказа
+    public String getNumberOfOrder (){//текст о подтверждении заказа
 
-        driver.findElement(By.className("Order_Text__2broi")).getText();
+       return driver.findElement(orderNumber).getText();
     }
 
 

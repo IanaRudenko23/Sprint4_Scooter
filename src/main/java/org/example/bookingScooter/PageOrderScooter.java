@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class PageOrderScooter {
+public class PageOrderScooter {//класс страницы "Для кого самокат", поля этого класса(первое модальное окошко)
     private WebDriver driver;
     private String name;
     private String surname;

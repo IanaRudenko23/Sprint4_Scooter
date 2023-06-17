@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
     @RunWith(Parameterized.class)
     public class ScooterBookingTests {
+        private final static String URL_SCOOTER = "https://qa-scooter.praktikum-services.ru/";
 
         private final String name;
         private final String surname;
@@ -52,7 +53,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
         @Test
         public void checkBookingScooter() {
-            driver.get("https://qa-scooter.praktikum-services.ru/");
+            driver.get(URL_SCOOTER);
             MainPageScooterBooking objMainPageScooterBooking = new MainPageScooterBooking(driver);
             PageOrderScooter objPageOrderScooter = new PageOrderScooter(driver);
             PageAboutOrderForm objPageAboutOrderForm = new PageAboutOrderForm(driver);
@@ -64,8 +65,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
             objPageAboutOrderForm.waitForLoadConfirmationWindow();
             objPageAboutOrderForm.clickYesButton();
             objPageAboutOrderForm.checkFinalOrderWindow();
-            objPageAboutOrderForm.getNumberOfOrder();
-            System.out.println("Заказ успешно оформлен");
+            String orderNumber = objPageAboutOrderForm.getNumberOfOrder();
+            System.out.println(orderNumber);
 
         }
 
