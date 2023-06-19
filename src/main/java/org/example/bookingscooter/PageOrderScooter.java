@@ -1,4 +1,4 @@
-package org.example.bookingScooter;
+package org.example.bookingscooter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PageOrderScooter {//класс страницы "Для кого самокат", поля этого класса(первое модальное окошко)
     private WebDriver driver;
-    private String name;
+    private String name;//не поняла зачем убрать это поле, оно используется в методе который оформляет заказ (public void makeOrder(String name, String surname, String address,String telephone){//метод оформить заказ)
     private String surname;
     private String address;
     private String metro;

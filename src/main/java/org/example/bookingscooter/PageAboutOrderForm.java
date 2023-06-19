@@ -1,4 +1,4 @@
-package org.example.bookingScooter;
+package org.example.bookingscooter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -11,7 +11,6 @@ public class PageAboutOrderForm {//класс "Про аренду" (второ�
     private By dateInput = By.cssSelector(".Order_MixedDatePicker__3qiay input[placeholder *= 'Когда']");//локатор для ввода даты в поле дата
     private By termInput = By.xpath(".//div[@class = 'Dropdown-placeholder']");//локатор для поля Срок аренды
     private By termList = By.xpath(".//div[@class = 'Dropdown-menu']");//меню с выбором срока аренды самоката
-    private By termOption = By.xpath(".//div[@class = 'Dropdown-placeholder is-selected' and text()='сутки']");
     private By commentsInput = By.cssSelector(".Input_InputContainer__3NykH input[placeholder *= 'Комментарий']");//поле комментарий
     private String comment;
     private String date;
@@ -35,8 +34,6 @@ public class PageAboutOrderForm {//класс "Про аренду" (второ�
     public void setTerm() {//устанавливаем срок аренды самоката
         driver.findElement(termInput).click();
         driver.findElement(termList).click();
-        //driver.findElement(termOption).click();
-
     }
 
     public void setComment (String comment){//ввели комментарий в поле Комментарии

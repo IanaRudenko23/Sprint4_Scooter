@@ -1,7 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.bookingScooter.MainPageScooterBooking;
-import org.example.bookingScooter.PageAboutOrderForm;
-import org.example.bookingScooter.PageOrderScooter;
+import org.example.bookingscooter.MainPageScooterBooking;
+import org.example.bookingscooter.PageAboutOrderForm;
+import org.example.bookingscooter.PageOrderScooter;
+import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +11,9 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-    @RunWith(Parameterized.class)
+import static org.hamcrest.core.IsNull.notNullValue;
+
+@RunWith(Parameterized.class)
     public class ScooterBookingTests {
         private final static String URL_SCOOTER = "https://qa-scooter.praktikum-services.ru/";
 
@@ -44,10 +47,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
         @Before
         public void setupAll() {
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-            WebDriverManager.firefoxdriver().clearDriverCache().setup();
-            driver = new FirefoxDriver();
+        //WebDriverManager.chromedriver().setup();
+        //driver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().clearDriverCache().setup();
+        driver = new FirefoxDriver();
         }
 
 
@@ -58,7 +61,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
             PageOrderScooter objPageOrderScooter = new PageOrderScooter(driver);
             PageAboutOrderForm objPageAboutOrderForm = new PageAboutOrderForm(driver);
             objMainPageScooterBooking.acceptCookie();
-            objMainPageScooterBooking.clickBookingButton(isbookingButtonUp);
+            objMainPageScooterBooking.clickBookingButton();
             objPageOrderScooter.makeOrder(name, surname, address, telephone);
             objPageOrderScooter.waitForLoadAboutOrderForm();
             objPageAboutOrderForm.fillAboutOrderForm(comment, date);
@@ -66,7 +69,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
             objPageAboutOrderForm.clickYesButton();
             objPageAboutOrderForm.checkFinalOrderWindow();
             String orderNumber = objPageAboutOrderForm.getNumberOfOrder();
+            MatcherAssert.assertThat("Заказ не оформлен", orderNumber, notNullValue());
             System.out.println(orderNumber);
+
 
         }
 
